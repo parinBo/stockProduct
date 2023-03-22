@@ -1,0 +1,15 @@
+export interface ProductModel {
+    sku:string,
+    productName: string,
+    importQuantity: number,
+    exportQuantity: number,
+    balanceQuantity: number,
+    productCost: number,
+    productPrice: number,
+    type: string,
+    importDate: Date,
+    exportDate: Date,
+    updateDate: Date,
+    roastDate: Date,
+    updateUSer: string,
+}

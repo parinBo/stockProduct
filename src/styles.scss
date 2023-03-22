@@ -1,0 +1,110 @@
+$brown-extar-dark: #261c1c;
+$brown-dark: #594545;
+$brown-milo: #A77979;
+$brown-normal: #844B3F;
+$brown-bg: #6A3D3D;
+$brown-bg-light: #B4846C;
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.css";
+@import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap');
+
+:root {
+    --brown-extar-dark: #261c1c;
+    --brown-dark: #594545;
+    --brown-milo: #A77979;
+    --brown-normal: #844B3F;
+    --brown-bg: #6A3D3D;;
+    --brown-bg-light: #B4846C;
+}
+body {
+    font-family: 'Mitr', sans-serif;
+}
+
+@mixin font-bold($name, $font-size, $font-color) {
+    .font-#{$name} {
+        font-size: $font-size;
+        color: $font-color;
+    }
+}
+
+@mixin color($color) {
+    color: $color;
+}
+
+label {
+    color: $brown-dark;
+}
+
+@include font-bold('extar-dark', 14, $brown-extar-dark);
+@include font-bold('dark', 14, $brown-dark);
+@include font-bold('milo', 14, $brown-milo);
+
+
+span {
+    &.font-milo {
+        cursor: pointer;
+    }
+}
+
+.color-brown {
+    color: $brown-normal;
+}
+
+.btn {
+    &.color-brown {
+        background-color: $brown-normal;
+        box-shadow: $brown-extar-dark 3px 3px 7px 2px;
+        color: white;
+    }
+}
+
+form {
+    &.ng-submitted {
+        input {
+            &.ng-invalid {
+                background-color: rgb(253, 221, 221);
+                border: 1px solid #a94442;
+            }
+        }
+    }
+
+}
+
+.txt{
+    cursor: pointer;
+    &:hover{
+        & > p {
+            color: white;
+        }
+        & > .line {
+            margin-top: -10px;
+            border-top: 5px solid $brown-extar-dark;
+        }
+        &> .collapse {
+            display: block;
+            position: absolute;
+            color: white;
+            border-radius: 10px;
+            background-color: $brown-bg-light;
+            box-shadow: $brown-extar-dark 3px 3px 7px 2px;
+            
+
+        }
+    }
+    & > .line {
+        border-top: 2px solid $brown-extar-dark;
+    }
+    & > p {
+        @extend .font-extar-dark;
+    }
+}
+
+.navbar {
+    background-color: $brown-bg-light;
+
+    &>.navbar-collapse {
+        &>.btn {
+            background-color: $brown-bg;
+            color: white;
+        }
+    }
+}

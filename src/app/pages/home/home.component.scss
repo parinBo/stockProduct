@@ -1,0 +1,16 @@
+.c{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: var(--brown-bg-light) 0 0 10px 5px;
+    background-color: var(--brown-milo);
+    transition: 0.3s ease-in;
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.5);
+        box-shadow: var(--brown-extar-dark) 0 0 10px 5px;
+    }
+}

@@ -1,0 +1,45 @@
+$width-position:50%;
+$top-position:20%;
+
+.loading{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(226, 214, 214);
+    opacity: 0.8;
+}
+.imgLoading{
+    z-index: 999;
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    animation: load 2s infinite;
+}
+.loader-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 999;
+}
+
+@keyframes load {
+    0%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(90deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    75%{
+        transform: rotate(270deg);
+    }
+   
+    100%{
+        transform: rotate(360deg);
+    }
+}

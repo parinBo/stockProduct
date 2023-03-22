@@ -1,0 +1,21 @@
+<img src="/assets/images/head.png"  width="100%" alt="headHome" srcset="">
+<section>
+    <div class="d-flex justify-content-center mt-3">
+        <h1>Coffee Beans Shop</h1>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="c" style="margin: 2rem;" [routerLink]="'/products'">
+            <p>{{'PRODUCTS' | translate }}</p>
+        </div>
+        <div class="c" style="margin: 2rem;" [routerLink]="'/products'">
+            <p>{{'GREEN BEANS'  }}</p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="c" style="margin: 2rem;" [routerLink]="['/products','coffee']">
+            <p>{{'COFFEE' | translate }}</p>
+        </div>
+    </div>
+    
+</section>
