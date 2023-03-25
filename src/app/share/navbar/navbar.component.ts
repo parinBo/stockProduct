@@ -16,6 +16,10 @@ export class NavbarComponent {
     }
   }
 
+  onMenuClick(e:any){
+    console.log(e)
+  }
+
   onSignOut(){
     localStorage.removeItem('token');
     location.reload();

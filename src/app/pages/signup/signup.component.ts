@@ -54,11 +54,12 @@ export class SignupComponent {
             nzContent: this.translate.instant('CODE.'+res.code),
           });
         }else {
+          this.formSubmitted = false;
           this.modal.success({
             nzTitle: 'Notice',
             nzContent: this.translate.instant('CODE.'+res.code),
           })
-          this.formGroup.reset();
+          this.formGroup = this.createForm();
         }
        
       },error => {

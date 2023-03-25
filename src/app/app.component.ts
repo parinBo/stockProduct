@@ -10,11 +10,14 @@ import Utils from './services/utils.service';
 export class AppComponent {
   title = 'beanStock';
   isLoading = false
-  isAuthen = !!localStorage.getItem('token');
   constructor(translate :TranslateService){
     translate.use('th')
     Utils.load$.subscribe(load => {
       this.isLoading = load
     });
+  }
+
+  isAuthentication(){
+    return !!localStorage.getItem('token');
   }
 }

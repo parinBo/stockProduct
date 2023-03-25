@@ -25,6 +25,13 @@ body {
         color: $font-color;
     }
 }
+@mixin btn-color($name) {
+    .color-#{$name} {
+        background-color: var(--#{$name});
+        box-shadow: $brown-extar-dark 3px 3px 7px 2px;
+        color: white;
+    }
+}
 
 @mixin color($color) {
     color: $color;
@@ -49,18 +56,22 @@ span {
     color: $brown-normal;
 }
 
+@include btn-color('brown-milo');
+
 .btn {
+    
     &.color-brown {
         background-color: $brown-normal;
         box-shadow: $brown-extar-dark 3px 3px 7px 2px;
         color: white;
     }
+  
 }
 
 form {
     &.ng-submitted {
         input {
-            &.ng-invalid {
+            &.ng-invalid.ng-touched {
                 background-color: rgb(253, 221, 221);
                 border: 1px solid #a94442;
             }

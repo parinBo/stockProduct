@@ -13,16 +13,16 @@
                 <div class="line"></div>
                 <div class="collapse">
                     <div style="padding: 0 1rem 1rem 1rem;">
-                        <div class="txt">
+                        <div class="txt" [routerLink]="['/products','order']">
                             <p class="mx-3" style="font-size: 16px;">{{'products' | translate}}</p>
                             <div class="line"></div>
                         </div>
-                        <div class="txt">
-                            <p class="mx-3" style="font-size: 16px;">{{'Coffee' | translate}}</p>
+                        <div class="txt" [routerLink]="['/products','bean']">
+                            <p class="mx-3" style="font-size: 16px;">{{'GreenBean' | translate}}</p>
                             <div class="line"></div>
                         </div>
-                        <div class="txt">
-                            <p class="mx-3" style="font-size: 16px;">{{'GreenBean' | translate}}</p>
+                        <div class="txt" [routerLink]="['/products','coffee']">
+                            <p class="mx-3" style="font-size: 16px;">{{'Coffee' | translate}}</p>
                             <div class="line"></div>
                         </div>
                     </div>

@@ -6,12 +6,13 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
-  {path:'home', component:HomeComponent, canActivate:[AuthGuardService]},
+  {path: '', pathMatch: 'full', redirectTo: 'home'},  
   {path: '', loadChildren: ()=> import('./pages/product/product.module').then(m => m.ProductModule), canActivate:[AuthGuardService]},
   {path: '', loadChildren: ()=> import('./pages/report/report.module').then(m => m.ReportModule), canActivate:[AuthGuardService]},
+  {path:'home', component:HomeComponent, canActivate:[AuthGuardService]},
   { path:'signin', component: SigninComponent},
   { path:'signup', component: SignupComponent},
-  {path: '', redirectTo: 'home',  pathMatch: 'full',},
+  {path: '**', redirectTo: 'home',  pathMatch: 'full',},
 ];
 
 @NgModule({

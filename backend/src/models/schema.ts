@@ -6,7 +6,7 @@ interface UserMethods extends UserModel,Document{
 
     findByUserName: (username:string) => Promise<Object[]>;
 }
-const userSchema:any = new Schema<UserMethods>({
+const userSchema = new Schema({
     id:{
         type: Schema.Types.ObjectId
     },
@@ -31,13 +31,10 @@ const userSchema:any = new Schema<UserMethods>({
         type: String,
         default: '0'
     }
-},{
-    methods:{
-        findByUsername(username:string){
-            return model('Users',userSchema).find({username});
-        }
-    }
 })
+userSchema.methods.findByUsername = (username:string)=>{
+    return model('Users',userSchema).find({username});
+}
 
 const Users = model<UserMethods>('Users',userSchema);
 

@@ -40,6 +40,7 @@ const register = async (req: Request, res:Response) => {
             res.status(201).send({status:'s', code:'success'});
         }
     }catch(error) {
+        console.log(error)
         res.status(500).json(error);  
     }
 }
@@ -49,9 +50,7 @@ const signout = (req: Request, res:Response) => {
 }
 
 async function checkExistUser(username:string) {
-    const user = new Users();
-    return (await user.findByUserName(username)).length > 0
-
+    return (await Users.find({username})).length >0;
 }
 async function hashPassword(password:string){
     const saltRounds = 10;
