@@ -29,6 +29,6 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/moment-timezone": "^0.5.30",
     "@types/mongodb": "^4.0.7",
-    "@types/node": "^18.14.0"
+    "@types/node": "^18.15.10"
   }
 }
