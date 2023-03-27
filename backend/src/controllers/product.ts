@@ -17,7 +17,8 @@ const getProduct = async (req: Request, res: Response) => {
                     { $match: { type: data.type } },
                     { $sort: { updateDate: -1 } },
                     { $group: { _id: "$sku", latest: { $first: "$$ROOT" } } },
-                    { $project: { _id: 0, sku: "$latest.sku", productName: "$latest.productName", import: "$latest.import", export: "$latest.export", balance: "$latest.balance", updateDate: "$latest.updateDate" } }
+                    { $project: { _id: 0, sku: "$latest.sku", productName: "$latest.productName", import: "$latest.import", export: "$latest.export", balance: "$latest.balance", updateDate: "$latest.updateDate" } },
+                    { $sort : { sku : 1 } }
                 ];
                 result = await Products.aggregate(pipeline)
             }
