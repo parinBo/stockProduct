@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit {
   
   type: string | null = '';
   get listProducts() {return Utils.coreData.listProducts}
+  get reportFlag() {return Utils.coreData.reportFlag}
   constructor(private route:ActivatedRoute,  private modal:NzModalService,
     private translate: TranslateService, private api:ProjectService){}
 

@@ -9,7 +9,7 @@ export class HTTPInterceptor implements HttpInterceptor {
   constructor(private notification: NzNotificationService, private translate: TranslateService){}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const modifiedReq = req.clone({
-            headers: req.headers.set('Authorization', 'Bearer my-token')
+            headers: req.headers.set('Authorization', ''+ localStorage.getItem('token'))
           });
       
           return next.handle(modifiedReq).pipe(

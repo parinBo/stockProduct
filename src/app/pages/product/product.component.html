@@ -30,6 +30,11 @@
                         <p>{{'BALANCE' | translate}}</p>
                     </div>
                 </th>
+                <th *ngIf="reportFlag">
+                    <div class="text-center">
+                        <p>{{'Username' | translate}}</p>
+                    </div>
+                </th>
                 <th>
                     <div class="text-center">
                         <p>{{'DATE' | translate}}</p>
@@ -66,6 +71,11 @@
                     <td>
                         <div class="text-center">
                             <p>{{item.balance+' Kg.'}}</p>
+                        </div>
+                    </td>
+                    <td *ngIf="reportFlag">
+                        <div class="text-center">
+                            <p>{{item?.username}}</p>
                         </div>
                     </td>
                     <td>

@@ -2,7 +2,8 @@ import { Request, Response } from "express"
 import { ProductModel } from "../models/product";
 import { Products } from "../models/schema"
 import moment from 'moment';
-
+import jsonwebtoken from 'jsonwebtoken';
+import { UserModel } from "../models/user";
 const getProduct = async (req: Request, res: Response) => {
     const data = req.query as any;
     try {
@@ -11,13 +12,28 @@ const getProduct = async (req: Request, res: Response) => {
         } else {
             let result = null;
             if (data.report) {
-                result = await Products.find().where('type').equals(data.type);
+                const pipeline = [
+                    { $match: { type: data.type } },
+                    { $project: { 
+                        _id: 0, 
+                        sku: "$sku", 
+                        productName: "$productName", 
+                        import: "$import", export: "$export", balance: "$balance",
+                        username:"$updateUSer",
+                        updateDate: "$updateDate" } },
+                ]
+                // result = await Products.find().where('type').equals(data.type)
+                result = await Products.aggregate(pipeline);
             } else {
                 const pipeline: any = [
                     { $match: { type: data.type } },
                     { $sort: { updateDate: -1 } },
                     { $group: { _id: "$sku", latest: { $first: "$$ROOT" } } },
-                    { $project: { _id: 0, sku: "$latest.sku", productName: "$latest.productName", import: "$latest.import", export: "$latest.export", balance: "$latest.balance", updateDate: "$latest.updateDate" } },
+                    { $project: { 
+                        _id: 0, 
+                        sku: "$latest.sku", 
+                        productName: "$latest.productName", 
+                        import: "$latest.import", export: "$latest.export", balance: "$latest.balance", updateDate: "$latest.updateDate" } },
                     { $sort : { sku : 1 } }
                 ];
                 result = await Products.aggregate(pipeline)
@@ -32,11 +48,13 @@ const getProduct = async (req: Request, res: Response) => {
 
 const addProduct = async (req: Request, res: Response) => {
     let body: ProductModel = req.body as any;
+    let user = jsonwebtoken.decode(req.headers['authorization'] || '') as UserModel
     try {
         if (!body.type) {
             res.status(400).json({ status: 'e', code: 'ERROR.TYPE', message: '' });
         } else {
             const dataSameType = (await Products.find({ type: body.type })).length;
+            console.log(user);
             let balance = body.import - body.export;
             let sku = body.type[0] + '-' + (dataSameType + 1);
             const products = await Products.find({ productName: body.productName, type: body.type });
@@ -52,7 +70,8 @@ const addProduct = async (req: Request, res: Response) => {
                 ...body,
                 sku,
                 balance,
-                updateDate: moment().toDate()
+                updateDate: moment().toDate(),
+                updateUSer: user?.username || ''
             }
             const product = new Products(body);
             product.save();

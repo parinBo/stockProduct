@@ -51,6 +51,7 @@ export class MenuBottomComponent implements OnInit {
     ).subscribe(res=>{
       if(res.status === 's') {
         Utils.getNoti(res.status, 'บันทึกสำเร็จ')
+        Utils.coreData.reportFlag = false;
       }
       Utils.coreData.listProducts = res.data;
     })
@@ -62,6 +63,7 @@ export class MenuBottomComponent implements OnInit {
     this.api.getProduct({type: Utils.coreData.type, report:Utils.coreData.type}).subscribe(res=>{
       if(res.status === 's') {
         Utils.coreData.listProducts = res.data;
+        Utils.coreData.reportFlag = true;
       }
     }, ()=>{},()=> Utils.setLoading(false))
   }
