@@ -23,7 +23,6 @@ const signin = async (req: Request, res:Response) => {
             res.status(200).json({status:'e', code:'loginFail'});    
         }
     }catch(error) {
-        console.log('error', error)
         res.status(500).json({status:'e', code:'', message:error});    
     }
 }
@@ -59,11 +58,15 @@ async function hashPassword(password:string){
     return passWordHash;
 }
 async function checkPassword(username: string, password: string){
-    const user = (await Users.findOne({username}));
-    if(user){
-        const passwordHash = user!.password as string;
-        const isPassCorrect = bcrypt.compare(password, passwordHash);
-        return isPassCorrect;
+    try{
+        const user = (await Users.findOne({username}));
+        if(user){
+            const passwordHash = user!.password as string;
+            const isPassCorrect = bcrypt.compare(password, passwordHash);
+            return isPassCorrect;
+        }
+    }catch(error: any){
+        throw new Error(error);
     }
 }
 
