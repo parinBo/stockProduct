@@ -1,9 +1,9 @@
 export interface ProductModel {
     sku:string,
     productName: string,
-    importQuantity: number,
-    exportQuantity: number,
-    balanceQuantity: number,
+    import: number,
+    export: number,
+    balance: number,
     productCost: number,
     productPrice: number,
     type: string,

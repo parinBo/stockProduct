@@ -1,0 +1,16 @@
+.noti-btn{
+    position: absolute;
+    padding: 0.05em 1em;
+    border-radius: 50rem;
+    transform: translate(-35%, -70%);
+    color: white;
+    border: 2px solid black;
+    background-color: var(--brown-normal);
+}
+
+.noti-container{
+    right: 10%;
+    @media screen and (max-width: 420px) {
+        right: 25%;
+    }
+}

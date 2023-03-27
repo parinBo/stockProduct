@@ -23,6 +23,7 @@ import { HTTPInterceptor } from './config/http_interceptor';
 import { NavbarComponent } from './share/navbar/navbar.component';
 import { ProductModule } from './pages/product/product.module';
 import { ReportModule } from './pages/report/report.module';
+import { ModalMessageComponent } from './share/modal-message/modal-message.component';
 registerLocaleData(th);
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     ValidateMessageComponent,
     NavbarComponent,
+    ModalMessageComponent,
   ],
   imports: [
     BrowserModule,

@@ -119,3 +119,40 @@ form {
         }
     }
 }
+
+.notification {
+    display: none;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background-color: #f44336; /* Red */
+    color: white;
+    padding: 16px;
+    min-width: 200px;
+    border-radius: 5px;
+    z-index: 1;
+    animation: slidein 0.5s, fadeout 1s 1.5s;
+    &.show{
+        display: block;
+    }
+  }
+
+
+@keyframes slidein {
+    from {
+        bottom: -100px;
+    }
+    to {
+        bottom: 30px;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+  

@@ -1,4 +1,6 @@
 export const path = {
     signin: 'signin',
-    register: 'register'
+    register: 'register',
+    addProduct: 'addProduct',
+    getProduct: 'getProduct'
 }

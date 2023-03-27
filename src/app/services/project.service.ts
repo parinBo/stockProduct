@@ -20,4 +20,12 @@ export default class ProjectService {
     register(data: any){
         return this.http.post<any>(`${this.host + PATH.register}`, data)
     }
+   
+    getProduct(data: any){
+        return this.http.get<any>(`${this.host + PATH.getProduct}`, {params:data})
+    }
+    
+    addProduct(data: any){
+        return this.http.post<any>(`${this.host + PATH.addProduct}`, data)
+    }
 }

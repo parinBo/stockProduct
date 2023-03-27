@@ -3,28 +3,16 @@
         <span nz-icon [nzType]="'caret-'+icon" nzTheme="outline"></span>
     </div>
     <div class="box" #box>
-        <form>
-            <div class="mb-3">
-                <div class="d-flex align-items-center justify-content-center">
-                    <div class="col-md-2 col-3">
-                        <label class="form-label ">{{'SKU' | translate}}:</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="sku" formControlName="username">
-                    </div>
-                    <div class="col-md-1 col-3">
-                    </div>
-                    <div class="col-md-3 col-3">
-                    </div>
-                </div>
-            </div>
+        <form [formGroup]="formGroup">
             <div class="mb-3">
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="col-md-2 col-3">
                         <label class="form-label ">{{'PRODUCT_NAME' | translate}}:</label>
                     </div>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" placeholder="product name" formControlName="username">
+                    <div class="col-md-7 col-9">
+                        <input type="text" class="form-control" placeholder="product name" formControlName="productName">
+                    </div>
+                    <div class="col-md-1 col-2">
                     </div>
                 </div>
             </div>
@@ -34,23 +22,22 @@
                         <label class="form-label ">{{'IMPORT' | translate}}:</label>
                     </div>
                     <div class="col-md-3 col-3">
-                        <input type="number" class="form-control" formControlName="username">
+                        <input type="number" class="form-control" formControlName="import">
                     </div>
                     <div class="col-md-1 col-3">
                         <label class="form-label ">{{'EXPORT' | translate}}:</label>
                     </div>
                     <div class="col-md-3 col-3">
-                        <input type="number" class="form-control" formControlName="username">
+                        <input type="number" class="form-control" formControlName="export">
                     </div>
-                    <div class="col-md-1 col-1">
+                    <div class="col-md-1 col-2">
                         <label class="form-label ">{{'KG.' | translate}}</label>
                     </div>
                 </div>
             </div>
             <div class="mb-3">
                 <div class="d-flex align-items-center justify-content-center">
-                    <button class="btn color-brown-milo mx-3">{{'SAVE' | translate}}</button>
-                    <button type="button" class="btn color-brown-milo mx-3">{{'REPORT' | translate}}</button>
+                    <button class="btn color-brown-milo mx-3" (click)="onSave()">{{'SAVE' | translate}}</button>
                 </div>
             </div>
         </form>

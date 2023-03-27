@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import ProjectService from 'src/app/services/project.service';
+import Utils from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-product',
@@ -11,16 +13,20 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class ProductComponent implements OnInit {
   
   type: string | null = '';
+  get listProducts() {return Utils.coreData.listProducts}
   constructor(private route:ActivatedRoute,  private modal:NzModalService,
-    private translate: TranslateService){}
+    private translate: TranslateService, private api:ProjectService){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.type = params.get('type');
+      Utils.coreData.type = this.type;
       if(!this.type) {
         this.modal['error']({
           nzContent: this.translate.instant('ERROR.WRONG_TYPE')
         })
+      }else{
+        this.api.getProduct({type:this.type}).subscribe(res=> Utils.coreData.listProducts = res.data)
       }
     });
   }
@@ -29,13 +35,10 @@ export class ProductComponent implements OnInit {
     switch(this.type){
       case 'order':
         return this.translate.instant('PRODUCTS')
-        break;
       case 'bean':
         return this.translate.instant('GREEN BEANS')
-        break;
       case 'coffee':
         return this.translate.instant('COFFEE')
-        break;
     }
   }
 }

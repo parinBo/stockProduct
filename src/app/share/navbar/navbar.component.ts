@@ -9,11 +9,7 @@ export class NavbarComponent {
 
   onClickToggle(){
     const nav = document.querySelector('#navbarSupportedContent')?.classList;
-    if(nav?.contains('show')){
-      nav.remove('show');
-    }else{
-      nav?.add('show');
-    }
+    nav?.toggle('show');
   }
 
   onMenuClick(e:any){

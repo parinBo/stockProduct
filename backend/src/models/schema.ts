@@ -51,15 +51,15 @@ const productSchema = new Schema<ProductMethods>({
         type: String,
         required: true
     },
-    importQuantity: {
+    import: {
         type: Number,
         default: 0
     },
-    exportQuantity: {
+    export: {
         type: Number,
         default: 0
     },
-    balanceQuantity: {
+    balance: {
         type: Number,
         default: 0
     },

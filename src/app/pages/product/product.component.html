@@ -6,46 +6,75 @@
         <thead>
             <tr>
                 <th>
-                    <p>SKU</p>
+                    <div class="text-center">
+                        <p>SKU</p>
+                    </div>
                 </th>
                 <th>
-                    <p>{{'PRODUCT_NAME' | translate}}</p>
+                    <div class="text-center">
+                        <p>{{'PRODUCT_NAME' | translate}}</p>
+                    </div>
                 </th>
                 <th>
-                    <p>{{'IMPORT' | translate}}</p>
+                    <div class="text-center">
+                        <p>{{'IMPORT' | translate}}</p>
+                    </div>
                 </th>
                 <th>
-                     <p>{{'EXPORT' | translate}}</p>
+                    <div class="text-center">
+                        <p>{{'EXPORT' | translate}}</p>
+                    </div>
                 </th>
                 <th>
-                     <p>{{'BALANCE' | translate}}</p>
+                    <div class="text-center">
+                        <p>{{'BALANCE' | translate}}</p>
+                    </div>
                 </th>
                 <th>
-                     <p>{{'DATE' | translate}}</p>
+                    <div class="text-center">
+                        <p>{{'DATE' | translate}}</p>
+                    </div>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <p>test</p>
-                </td>
-                <td>
-                    <p>test</p>
-                </td>
-                <td>
-                    <p>test</p>
-                </td>
-                <td>
-                    <p>test</p>
-                </td>
-                <td>
-                    <p>test</p>
-                </td>
-                <td>
-                    <p>test</p>
-                </td>
-            </tr>
+            <ng-container *ngFor="let item of listProducts">
+                <tr>
+                    <td>
+                        <div class="text-center">
+                            <p>{{item.sku}}</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            <p>{{item.productName}}</p>
+                            <div class="pill" [ngClass]="item.balance > 0? 'bg-success' : 'bg-danger'">
+                                <span class="text-white">{{item.balance > 0? 'มีสินค้า' : 'สินค้าหมด'}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-center">
+                            <p>{{item.import ? item.import+' Kg.' : '-'}}</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-center">
+                            <p>{{item.export ? item.export+' Kg.' : '-'}}</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-center">
+                            <p>{{item.balance+' Kg.'}}</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-center">
+                            <p>{{item.updateDate | date:'dd/MM/YYYY HH:mm'}}</p>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
         </tbody>
     </table>
 </section>
