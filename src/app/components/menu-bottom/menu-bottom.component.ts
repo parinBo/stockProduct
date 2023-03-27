@@ -55,5 +55,16 @@ export class MenuBottomComponent implements OnInit {
       Utils.coreData.listProducts = res.data;
     })
   }
+  
+  onReport(){
+    this.formGroup.controls['type'].setValue(Utils.coreData?.type);
+    Utils.setLoading(true);
+    this.api.getProduct({type: Utils.coreData.type, report:Utils.coreData.type}).subscribe(res=>{
+      if(res.status === 's') {
+        Utils.coreData.listProducts = res.data;
+      }
+    }, ()=>{},()=> Utils.setLoading(false))
+  }
+  
 
 }

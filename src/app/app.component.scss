@@ -3,6 +3,7 @@ $top-position:20%;
 
 .loading{
     position: absolute;
+    top: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgb(226, 214, 214);
@@ -17,6 +18,7 @@ $top-position:20%;
 }
 .loader-container{
     display: flex;
+    top: 0;
     justify-content: center;
     align-items: center;
     width: 100vw;
