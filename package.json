@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm install && ng build --configuration=production --base-href ./",
+    "build": "npm install && ng build ",
+    "build:prod": "npm install && ng build --configuration=production ",
     "start:backend": "cd ./backend && npm start",
     "build:backend": "cd ./backend && npm install && npm run build",
     "watch": "ng build --watch --configuration development",
