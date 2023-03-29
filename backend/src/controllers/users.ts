@@ -20,7 +20,7 @@ const signin = async (req: Request, res:Response) => {
             res.status(200).json({status:'s', code:'token', data:token});
             
         }else{
-            res.status(200).json({status:'e', code:'loginFail'});    
+            res.status(200).json({status:'e', code:'ERROR.LOGINFAIL'});    
         }
     }catch(error) {
         res.status(500).json({status:'e', code:'', message:error});    

@@ -56,6 +56,21 @@ export class MenuBottomComponent implements OnInit {
       Utils.coreData.listProducts = res.data;
     })
   }
+  onDelete(){
+    this.formGroup.controls['type'].setValue(Utils.coreData?.type);
+    this.api.delProduct(this.formGroup.value).pipe(
+      filter((val : any) => val.status === 's'),
+      switchMap(() => {
+        return this.api.getProduct({type: Utils.coreData.type});
+      })
+    ).subscribe(res=>{
+      if(res.status === 's') {
+        Utils.getNoti(res.status, 'สำเร็จ')
+        Utils.coreData.reportFlag = false;
+      }
+      Utils.coreData.listProducts = res.data;
+    })
+  }
   
   onReport(){
     this.formGroup.controls['type'].setValue(Utils.coreData?.type);

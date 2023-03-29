@@ -28,4 +28,8 @@ export default class ProjectService {
     addProduct(data: any){
         return this.http.post<any>(`${this.host + PATH.addProduct}`, data)
     }
+    
+    delProduct(data: any){
+        return this.http.delete<any>(`${this.host + PATH.delProduct}`, {params:data})
+    }
 }

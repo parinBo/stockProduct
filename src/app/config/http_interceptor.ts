@@ -23,6 +23,13 @@ export class HTTPInterceptor implements HttpInterceptor {
                   if(error.error.code){
                     error.name = '';
                     error.statusText = this.translate.instant(error.error.code);
+                    if(error.error.message){
+                      error.statusText =  (error.error.message as any[]).reduce((prev,now)=> prev += now,'');
+                    }
+                  }
+                  if(error.status === 401){
+                    localStorage.removeItem('token');
+                    location.reload();
                   }
                   this.notification.error(error.name,error.statusText)
                 }

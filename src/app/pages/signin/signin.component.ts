@@ -39,6 +39,7 @@ export class SigninComponent implements OnInit{
 
 
   signin() {
+    Utils.setLoading(true);
     this.service.signin({
       username: this.formGroup.value.username, 
       password: this.formGroup.value.password
@@ -58,7 +59,7 @@ export class SigninComponent implements OnInit{
           nzOkText: 'ok'
         });
       }
-    })
+    },()=>{}, ()=> Utils.setLoading(false))
 
   }
 

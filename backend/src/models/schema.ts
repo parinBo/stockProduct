@@ -3,7 +3,6 @@ import { ProductModel } from "./product";
 import { UserModel } from "./user";
 
 interface UserMethods extends UserModel,Document{
-
     findByUserName: (username:string) => Promise<Object[]>;
 }
 const userSchema = new Schema({
@@ -49,7 +48,7 @@ const productSchema = new Schema<ProductMethods>({
     },
     productName: {
         type: String,
-        required: true
+        required: [true, 'productName is required']
     },
     import: {
         type: Number,
@@ -95,7 +94,8 @@ const productSchema = new Schema<ProductMethods>({
     },
 })
 
-const Products = model('products',productSchema);
 
-export  {Users, Products};
+const LogProducts = model('log_products',productSchema);
+const Products = model('products',productSchema);
+export  {Users, Products,LogProducts};
 

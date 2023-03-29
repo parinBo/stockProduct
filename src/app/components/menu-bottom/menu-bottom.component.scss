@@ -28,13 +28,15 @@
         transition: 0.5s ease-in-out;
         transform: translateY(-30%);
         &.show{
-            transform: translateY(-420%);
+            transform: translateY(-550%);
         }
     }
 
    
     .box{
         border: 2px solid black;
+        border-radius: 10px;
+        box-shadow: 0 0 1rem 0rem #261c1c;
         background-color: white;
         margin: auto;
         width: 80%;
