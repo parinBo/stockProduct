@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuBottomComponent } from './menu-bottom.component';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { TranslateModule } from '@ngx-translate/core';
+import { SignupComponent } from './signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ValidateMessageComponent } from 'src/app/share/validate-message/validate-message.component';
 import { ValidateMessageModule } from 'src/app/share/validate-message/validate-message.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({
   declarations: [
-    MenuBottomComponent
+    SignupComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NzIconModule,
     TranslateModule,
+    RouterModule,
     ValidateMessageModule
-    
+ 
   ],
-  exports: [
-    MenuBottomComponent
+  exports:[
+    SignupComponent
   ]
 })
-export class MenuBottomModule { }
+export class SignupModule { }

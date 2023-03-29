@@ -60,15 +60,13 @@ const addProduct = async (req: Request, res: Response) => {
             const dataSameType = (await Products.find({ type: body.type })).length;
             let balance = body.import - body.export;
             let sku =  body.sku? body.sku : body.type[0] + '-' + (dataSameType + 1);
-            const products = await Products.find({ sku, type: body.type });
-            if (products.length) {
-                const lastData: ProductModel = products?.[products.length - 1];
-                sku = lastData.sku;
-                body.productName = lastData.productName;
-                balance += lastData?.balance || 0;
+            const products = await Products.findOne({ sku, type: body.type });
+            if (products) {
+                sku = products.sku;
+                balance += products?.balance || 0;
             }
             if (balance < 0) {
-                return res.status(500).json({ status: 'e', code: 'ERROR.WRONG_BALANCE', data: [] });
+                throw { status: 'e', code: 'ERROR.WRONG_BALANCE', data: [] };
             }
             body = {
                 ...body,
@@ -77,16 +75,13 @@ const addProduct = async (req: Request, res: Response) => {
                 updateDate: moment().toDate(),
                 updateUSer: user?.username || ''
             }
-            const update = await Products.findOneAndUpdate({sku,type:body.type},body, {
-                new: true
-            });
-            if(update){
-                update.save();
+            if(products){
+                await Products.updateOne({sku},{$set:{...body,productName:body.productName}});
             }else{
                 const product = new Products(body);
                 const validate = product.validateSync();
                 if(validate?.errors){
-                    throw getError(validate?.errors);
+                    throw { status: 'e', code: 'error', message: getError(validate?.errors) };
                 }
                 product.save();
             }
@@ -96,9 +91,7 @@ const addProduct = async (req: Request, res: Response) => {
         }
 
     } catch (err: any) {
-        let code = err.code ? err.code : 'error';
-        let message = err.code ? '' : err;
-        res.status(500).json({ status: 'e', code, message: message });
+        res.status(500).json(err);
     }
 }
 
@@ -124,10 +117,10 @@ const delProduct = async (req: Request, res: Response) => {
         Products.deleteOne({sku:sku}).exec();
         res.status(201).json({ status: 's', code: 'success', data: [] });
     }else{
-        throw 'ERROR.WRONG_PRODUCT'
+        throw {status: 'e',code:'ERROR.WRONG_PRODUCT', message:''}
     }
     }catch (err: any) {
-        res.status(500).json({ status: 'e', code: err, message: err });
+        res.status(500).json(err);
     }
 }
 

@@ -10,6 +10,9 @@ import Utils from 'src/app/services/utils.service';
   styleUrls: ['./menu-bottom.component.scss']
 })
 export class MenuBottomComponent implements OnInit {
+
+  get import() {return this.formGroup.controls['import']}
+  get export() {return this.formGroup.controls['export']}
   ngOnInit(): void {
   }
   constructor(private fb:FormBuilder, private api: ProjectService){
@@ -41,21 +44,34 @@ export class MenuBottomComponent implements OnInit {
     }
   }
 
+  validate(){
+    if(!this.import.value && !this.export.value){
+      this.import.setErrors({atleastOne:true})
+      this.export.setErrors({atleastOne:true})
+      return false
+    }
+    return true;
+  }
+
   onSave(){
     this.formGroup.controls['type'].setValue(Utils.coreData?.type);
-    this.api.addProduct(this.formGroup.value).pipe(
-      filter(val => val.status === 's'),
-      switchMap(() => {
-        return this.api.getProduct({type: Utils.coreData.type});
+    if(this.validate()) {
+      this.api.addProduct(this.formGroup.value).pipe(
+        filter(val => val.status === 's'),
+        switchMap(() => {
+          return this.api.getProduct({type: Utils.coreData.type});
+        })
+      ).subscribe(res=>{
+        if(res.status === 's') {
+          Utils.getNoti(res.status, 'บันทึกสำเร็จ')
+          Utils.coreData.reportFlag = false;
+        }
+        Utils.coreData.listProducts = res.data;
       })
-    ).subscribe(res=>{
-      if(res.status === 's') {
-        Utils.getNoti(res.status, 'บันทึกสำเร็จ')
-        Utils.coreData.reportFlag = false;
-      }
-      Utils.coreData.listProducts = res.data;
-    })
+    }
+    
   }
+
   onDelete(){
     this.formGroup.controls['type'].setValue(Utils.coreData?.type);
     this.api.delProduct(this.formGroup.value).pipe(

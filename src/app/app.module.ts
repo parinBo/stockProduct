@@ -15,7 +15,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { ValidateMessageComponent } from './share/validate-message/validate-message.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
@@ -24,6 +23,7 @@ import { NavbarComponent } from './share/navbar/navbar.component';
 import { ProductModule } from './pages/product/product.module';
 import { ReportModule } from './pages/report/report.module';
 import { ModalMessageComponent } from './share/modal-message/modal-message.component';
+import { SignupModule } from './pages/signup/signup.module';
 registerLocaleData(th);
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -34,11 +34,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     SigninComponent,
-    SignupComponent,
     HomeComponent,
-    ValidateMessageComponent,
     NavbarComponent,
-    ModalMessageComponent,
+    ModalMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     BrowserAnimationsModule,
     ProductModule,
+    SignupModule,
     ReportModule,
     NzModalModule,
     NzIconModule,
