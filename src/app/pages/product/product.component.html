@@ -60,17 +60,17 @@
                     </td>
                     <td>
                         <div class="text-center">
-                            <p>{{item.import ? item.import+' Kg.' : '-'}}</p>
+                            <p>{{item.import ? item.import : '-'}}</p>
                         </div>
                     </td>
                     <td>
                         <div class="text-center">
-                            <p>{{item.export ? item.export+' Kg.' : '-'}}</p>
+                            <p>{{item.export ? item.export : '-'}}</p>
                         </div>
                     </td>
                     <td>
                         <div class="text-center">
-                            <p>{{item.balance+' Kg.'}}</p>
+                            <p>{{item.balance}}</p>
                         </div>
                     </td>
                     <td *ngIf="reportFlag">
