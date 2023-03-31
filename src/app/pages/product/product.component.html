@@ -1,5 +1,8 @@
 <section class="d-flex justify-content-center" style="margin-top: 2rem;">
     <h2>{{getNameType}}</h2>
+    <div *ngIf="reportFlag" style="position: absolute;right: 0;">
+        <button class="btn btn-danger" (click)="onDeleteAll()">ลบข้อมูลทั้งหมด</button>
+    </div>
 </section>
 <section class="container" style="overflow-x: auto;">
     <table class="table table-bordered">

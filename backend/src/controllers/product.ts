@@ -45,7 +45,6 @@ const getProduct = async (req: Request, res: Response) => {
         }
 
     } catch (err: any) {
-        console.log('err',err)
         res.status(500).json({ status: 'e', code: 'error', message: err });
     }
 }
@@ -120,14 +119,18 @@ const delProduct = async (req: Request, res: Response) => {
         throw {status: 'e',code:'ERROR.WRONG_PRODUCT', message:''}
     }
     }catch (err: any) {
-        res.status(500).json(err);
+        res.status(500).json({ status: 'e', code: 'error', message: err });
     }
 }
 
 const delAllProducts = async (req: Request, res: Response) => {
-    Products.deleteMany({ type: req.query.type }).exec()
-    LogProducts.deleteMany({ type: req.query.type }).exec()
-    res.status(201).json({ status: 's', code: 'success', data: [] });
+    try{
+        Products.deleteMany({ type: req.query.type }).exec()
+        LogProducts.deleteMany({ type: req.query.type }).exec()
+        res.status(201).json({ status: 's', code: 'success', data: [] });
+    }catch(err:any){
+        res.status(500).json({ status: 'e', code: 'error', message: err });
+    }
 }
 
 const getError = (errors:any) => {

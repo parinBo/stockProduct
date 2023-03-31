@@ -6,6 +6,6 @@ import { addProduct, delAllProducts, delProduct, getProduct } from '../controlle
 export const productRouter = express.Router();
 
 productRouter.get('/getProduct',authMiddleware,getProduct);
-// productRouter.get('/delAllProducts',delAllProducts);
+productRouter.delete('/delAll',authMiddleware,delAllProducts);
 productRouter.delete('/delProduct',authMiddleware,delProduct);
 productRouter.post('/addProduct',authMiddleware, addProduct);

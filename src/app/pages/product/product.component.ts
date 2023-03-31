@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { filter, switchMap } from 'rxjs';
 import ProjectService from 'src/app/services/project.service';
 import Utils from 'src/app/services/utils.service';
 
@@ -30,6 +31,21 @@ export class ProductComponent implements OnInit {
         this.api.getProduct({type:this.type}).subscribe(res=> Utils.coreData.listProducts = res.data)
       }
     });
+  }
+
+  onDeleteAll(){
+    this.api.delALL({type:this.type}).pipe(
+      filter((val : any) => val.status === 's'),
+      switchMap(() => {
+        return this.api.getProduct({type: Utils.coreData.type});
+      })
+    ).subscribe(res=>{
+      if(res.status === 's') {
+        Utils.getNoti(res.status, 'สำเร็จ')
+        Utils.coreData.reportFlag = false;
+      }
+      Utils.coreData.listProducts = res.data;
+    })
   }
 
   get getNameType() {

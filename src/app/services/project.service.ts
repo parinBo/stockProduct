@@ -32,4 +32,8 @@ export default class ProjectService {
     delProduct(data: any){
         return this.http.delete<any>(`${this.host + PATH.delProduct}`, {params:data})
     }
+    
+    delALL(data: any){
+        return this.http.delete<any>(`${this.host + PATH.delAll}`, {params:data})
+    }
 }

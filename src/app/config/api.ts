@@ -3,5 +3,6 @@ export const path = {
     register: 'register',
     addProduct: 'addProduct',
     delProduct: 'delProduct',
+    delAll: 'delAll',
     getProduct: 'getProduct'
 }
