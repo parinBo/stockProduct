@@ -2,7 +2,7 @@
 export const environment = {
     production: true,
     main:{
-      PATH:'https://beanstock-service.onrender.com/'
+      PATH:'https://myservice-service-fndd.onrender.com/'
     }
   };
   
